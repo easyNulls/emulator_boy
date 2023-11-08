@@ -1,0 +1,122 @@
+#root {
+  background-color: var(--window-background-color);
+}
+
+body {
+  margin: 0;
+  margin: 0;
+  font-family: rubik,Arial,Helvetica,sans-serif;
+  // font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI",  "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var( --icon-color);
+  background-color: var(--window-background-color);
+  text-align: left;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+.theme_icon {
+   color: currentcolor;
+    cursor: pointer;
+    margin: 0.2rem;
+    outline-color: var(--icon-color);
+    padding: 0.4rem;
+    position: relative;
+    transition: opacity .25s;
+    vertical-align: middle;
+    z-index: 1;
+    svg {
+      fill: currentcolor;
+      display: block;
+      height: 1.6rem;
+      width: 1.6rem;
+    }
+}
+
+
+.fixed_theme_button {
+  position: fixed;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  
+}
+
+
+// https://s2.51cto.com/images/blog/202304/21140444_6442277c7f58e56900.jpg
+
+// 主题类型定义
+:root {
+
+  --dominant-color: #108372;
+
+  // 页面背景色
+  --window-background-color: #eaecee;
+
+  // 很多图标、border都用这个颜色
+  --icon-color:  #787878bb;
+
+  // 控件被选中时的颜色
+  --color-accent: rgba(102,124,145,.3);
+
+  // 控制各个控件被选中时的颜色
+  --color-control-normal:  var(--dominant-color);
+
+  // Appbar背景色
+  --color-primary: var(--dominant-color)
+
+  // ToolBar上的Title颜色
+  --text-color-primary:  #000000;
+
+  // 底部导航栏背景颜色
+  --navigation-bar-background-color: #055549;
+
+  // 按钮背景色
+  --button-background-color: var(--dominant-color);
+
+  --normal-font-color: #7b7b7b;
+
+  // 选中字体和图表颜色
+  --active-font-color:#037181;
+
+  // hover字体和图表颜色
+  --hover-font-color:  #545a5f;
+
+}
+
+:root[data-color_scheme = 'dark'] {
+
+  --dominant-color: #1C1C1C; /* 主色调 */
+
+  --window-background-color: #111111; /* 背景颜色 */
+
+  --icon-color:  #787878bb;
+
+  --color-accent: #E74C3C; /* 强调色 */
+
+  --color-control-normal: var(--dominant-color);
+
+  --color-primary: var(--dominant-color);
+
+  --text-color-primary: #FFFFFF; /* 文字颜色 */
+  
+  --navigation-bar-background-color: #0D0D0D; /* 底部导航栏背景颜色 */
+
+  --button-background-color: var(--dominant-color);
+  
+  --normal-font-color: #7b7b7b;
+
+  --active-font-color: #FF6347; /* 活动字体颜色 */
+
+  --hover-font-color: #FFA07A; /* 鼠标悬停字体颜色 */
+
+    
+}

@@ -1,0 +1,57 @@
+
+.emulator_popup_container {
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+  z-index: 9999;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: #ccc;
+}
+
+.emulator_popup_container *, .emulator_popup_container *::after, .emulator_popup_container *::before {
+  box-sizing: border-box;
+  color: #bcbcbc !important;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.emulator_popup_container h4 {
+  color: #ccc;
+  font-size: 24px;
+  margin: 0;
+  padding: 10px;
+}
+
+.emulator_popup_body {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+.emulator_control_body {
+  color: #bcbcbc !important;
+  border: unset;
+}
+
+.emulator_loading_text {
+  position: absolute;
+  bottom: 40px;
+  font-weight: 500;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: inherit;
+  font-size: 12px;
+  color: #bcbcbc;
+}
+
+.emulator_loading_text_glow {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  padding: 1px 5px 1px 5px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+}
