@@ -8,13 +8,17 @@
   position: absolute;
   top: 0;
   width: 100%;
-  color: #ccc;
+  // color: #ccc;
+  color: var(--text-color);
+
 }
 
 .emulator_popup_container *, .emulator_popup_container *::after, .emulator_popup_container *::before {
   box-sizing: border-box;
-  color: #bcbcbc !important;
+  // color: #bcbcbc !important;
   
+  color: var(--text-color) !important;
+
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -22,7 +26,7 @@
 }
 
 .emulator_popup_container h4 {
-  color: #ccc;
+  color: var(--text-color);
   font-size: 24px;
   margin: 0;
   padding: 10px;
@@ -34,7 +38,8 @@
 }
 
 .emulator_control_body {
-  color: #bcbcbc !important;
+  // color: #bcbcbc !important;
+  color: var(--text-color) !important;
   border: unset;
 }
 
@@ -46,7 +51,8 @@
   transform: translateX(-50%);
   box-sizing: inherit;
   font-size: 12px;
-  color: #bcbcbc;
+  // color: #bcbcbc;
+  color: var(--text-color);
 }
 
 .emulator_loading_text_glow {

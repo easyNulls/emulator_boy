@@ -1,5 +1,5 @@
 #root {
-  background-color: var(--window-background-color);
+  background-color: var( --body-background);
 }
 
 body {
@@ -10,8 +10,8 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: var( --icon-color);
-  background-color: var(--window-background-color);
+  color: var(--text-color);
+  background-color: var(--body-background);
   text-align: left;
 }
 
@@ -51,72 +51,105 @@ html {
 }
 
 
-// https://s2.51cto.com/images/blog/202304/21140444_6442277c7f58e56900.jpg
-
 // 主题类型定义
 :root {
 
-  --dominant-color: #108372;
-
   // 页面背景色
-  --window-background-color: #eaecee;
 
-  // 很多图标、border都用这个颜色
-  --icon-color:  #787878bb;
+  --primary-color: #5020a8;
+  --secondary-color: #6d508b;
 
-  // 控件被选中时的颜色
-  --color-accent: rgba(102,124,145,.3);
+  --body-background: #fff;
+  --body-background-shaded: #f7f7f7;
+  // --body-background-light: #fff;
+  --body-background-faded: rgba(255,255,255,0.93);
 
-  // 控制各个控件被选中时的颜色
-  --color-control-normal:  var(--dominant-color);
+  --button-color: #7f6699;
+  --button-background: #ede8f2;
+  --button-background-hover: #e0d8e9;
+  --button-background-active: #d3c8df;
+  --button-background-disabled: #ede8f2;
 
-  // Appbar背景色
-  --color-primary: var(--dominant-color)
+  --button-primary-color: #fff;
+  --button-primary-background: #5020a8;
+  --button-primary-background-hover: #461c93;
+  --button-primary-background-active: #3c187d;
+  --button-primary-background-disabled: #5020a8;
 
-  // ToolBar上的Title颜色
-  --text-color-primary:  #000000;
 
-  // 底部导航栏背景颜色
-  --navigation-bar-background-color: #055549;
+  --alert-background: #fff2ae;
+  --alert-color: #ad6c00;
+  --alert-error-background: #d83e3e;
+  --alert-error-color: #fff;
+  --alert-success-background: #b4f1af;
+  --alert-success-color: #33722d;
 
-  // 按钮背景色
-  --button-background-color: var(--dominant-color);
+  --badge-background: #7c7c7c;
+  --badge-color: #fff;
+  --badge-hidden-background: #888;
+  
 
-  --normal-font-color: #7b7b7b;
+  --switch-on-color: #58a400;
+  --switch-off-color: #d0021b;
 
-  // 选中字体和图表颜色
-  --active-font-color:#037181;
+  --enabled-color: #2ECC40;
+  --disabled-color: #FF4136;
 
-  // hover字体和图表颜色
-  --hover-font-color:  #545a5f;
+
+  --error-color: #d83e3e;
+  --text-color: #19141f;
+  --link-color: #4d16b2;
+
+  --avatar-background: #ede8f2;
 
 }
 
 :root[data-color_scheme = 'dark'] {
 
-  --dominant-color: #1C1C1C; /* 主色调 */
+  --primary-color: #5020a8;
+  --secondary-color: #6d508b;
 
-  --window-background-color: #111111; /* 背景颜色 */
+  --body-background: #19141f;
+  --body-background-shaded: #140e19;
+  // --body-background-light: #2a1f37;
+  --body-background-faded: rgba(25,20,31,0.93);
 
-  --icon-color:  #787878bb;
 
-  --color-accent: #E74C3C; /* 强调色 */
+  --button-color: #7fba00;
+  --button-background: #3c3c3c;
+  --button-background-hover: #4a4a4a;
+  --button-background-active: #292929;
+  --button-background-disabled: #3c3c3c;
 
-  --color-control-normal: var(--dominant-color);
+  --button-primary-color: #fff;
+  --button-primary-background: #5020a8;
+  --button-primary-background-hover: #461c93;
+  --button-primary-background-active: #3c187d;
+  --button-primary-background-disabled: #5020a8;
 
-  --color-primary: var(--dominant-color);
+  --alert-background: #292929;
+  --alert-color: #7fba00;
+  --alert-error-background: #d83e3e;
+  --alert-error-color: #fff;
+  --alert-success-background: #3c3c3c;
+  --alert-success-color: #7fba00;
 
-  --text-color-primary: #FFFFFF; /* 文字颜色 */
-  
-  --navigation-bar-background-color: #0D0D0D; /* 底部导航栏背景颜色 */
 
-  --button-background-color: var(--dominant-color);
-  
-  --normal-font-color: #7b7b7b;
+  --badge-color: #fff;
+  --badge-background: #7c7c7c;
+  --badge-hidden-background: #888;
 
-  --active-font-color: #FF6347; /* 活动字体颜色 */
 
-  --hover-font-color: #FFA07A; /* 鼠标悬停字体颜色 */
+  --switch-on-color: #58a400;
+  --switch-off-color: #d0021b;
 
-    
+  --enabled-color: #2ECC40;
+  --disabled-color: #FF4136;
+
+  --error-color: #d83e3e;
+  --text-color: #fff;
+  --link-color: #7fba00;
+
+  --avatar-background: #3c3c3c;
+
 }
