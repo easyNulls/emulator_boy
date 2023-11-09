@@ -9,8 +9,8 @@ export type HoverProps = Pick<React.HTMLAttributes<HTMLElement>, 'onMouseEnter' 
 
 export const useHover = ({ mouseEnterDelayMS = 200, mouseLeaveDelayMS = 200 }): [boolean, HoverProps] => {
   const [isHovering, setIsHovering] = useState(false)
-  let mouseEnterTimer: number | NodeJS.Timeout
-  let mouseOutTimer: number | NodeJS.Timeout
+  let mouseEnterTimer: number | ReturnType<typeof setTimeout>
+  let mouseOutTimer: number | ReturnType<typeof setTimeout>
 
   return [
     isHovering,

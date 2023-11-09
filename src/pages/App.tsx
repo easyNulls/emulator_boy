@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { InjectGame, NotFound, HotGameList } from '@pages'
 
@@ -15,9 +15,11 @@ import VConsole from 'vconsole'
 
 import { IntlProvider } from 'react-intl'
 // import { useDarkMode } from '@/components/use-darkMode'
-import ThemeColorSchemeProvider from '@/components/theme-context'
+import ThemeColorSchemeProvider, { TypeThemeRef } from '@/components/theme-provider'
 import { useQueryParams } from '@/kits'
 import { SVG_moon, SVG_sun } from '@/assets/iconfont'
+import ColorSchemeSwitcher from '@/components/theme-switcher'
+import { browserColorScheme } from '@/components'
 
 // const local = 'zh'
 const strings = getStrings('zh_CN')
@@ -29,7 +31,9 @@ export const App: React.FC<Record<string, any>> = (props: Record<string, any>) =
   const { local = 'zh' } = useQueryParams<Record<string, string>>(
     '' === location.search ? location.href : location.search
   )
-  const [theme, putTheme] = useState<'light' | 'dark' | ''>()
+  const [theme, putTheme] = useState<'light' | 'dark' | ''>('light')
+  const colorSchemeRef = useRef<TypeThemeRef>(null)
+  const followOS = useMemo(() => theme === browserColorScheme(), [theme])
 
   useEffect(() => {
     const canDebug = name.includes('dev') || __NODE_ENV__ != 'production'
@@ -39,13 +43,9 @@ export const App: React.FC<Record<string, any>> = (props: Record<string, any>) =
 
   return (
     <IntlProvider messages={strings} locale={local}>
-      <ThemeColorSchemeProvider onColorScheme={value => putTheme(value)}>
+      <ThemeColorSchemeProvider ref={colorSchemeRef} onColorScheme={putTheme} followOS={followOS}>
         <Provider store={store}>
-          <label
-            className='theme_icon fixed_theme_button'
-            onClick={() => putTheme(theme === 'light' ? 'dark' : 'light')}>
-            {'light' === theme ? SVG_moon : SVG_sun}
-          </label>
+          <ColorSchemeSwitcher colorScheme={theme} onToggle={() => colorSchemeRef.current?.toggleDarkMode()} />
           <Router>
             <Routes>
               <Route path={'/inject_game'} element={<InjectGame />} />

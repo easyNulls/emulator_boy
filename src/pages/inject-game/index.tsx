@@ -7,6 +7,7 @@ import { RetroarchCreator } from '../emulator/retroarch-creator'
 
 import './index.less'
 import { useQueryParams } from '@/kits'
+import { useWindowOrientation } from '@/components/use-window-orientation'
 
 // const games: Array<{ core: string; rom: string }> = [
 //   { core: 'fbalpha2012_neogeo', rom: 'mslug3.zip' },
@@ -41,13 +42,17 @@ export const InjectGame: React.FC<{}> = () => {
     }
   })
 
-  useEffect(() => {}, [])
+  const { portrait } = useWindowOrientation()
+
+  const size = useMemo(
+    () => (portrait ? { width: '100%', height: 'auto' } : { width: 'auto', height: '100%' }),
+    [portrait]
+  )
 
   return (
     <div className='page'>
       {/* <Emulator width='640px' height='480px' arguments={{ ...games[1] }}> */}
-
-      <Emulator width='auto' height='auto' arguments={{ core, rom }} />
+      <Emulator {...size} arguments={{ core, rom }} />
     </div>
   )
 }

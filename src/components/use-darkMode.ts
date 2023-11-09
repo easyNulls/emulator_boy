@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-const __KEY_THEME_COLOR_SCHEME__ = 'color_scheme'
+export const __KEY_THEME_COLOR_SCHEME__ = 'color_scheme'
 
 export type _TYPE_DARK_MODE = 'dark' | 'light' | ''
 
@@ -10,61 +10,60 @@ type DarkModeProps = {
 	onColorScheme?: (value: _TYPE_DARK_MODE) => void
 }
 
+export const browserColorScheme = () => matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+
+
 export const useDarkMode = (props: DarkModeProps = { followOS: true }): [
 	_TYPE_DARK_MODE,
 	(value: _TYPE_DARK_MODE) => void,
-	() => void
+	() => void,
 ] => {
-	const { followOS, onColorScheme, colorSchemeKey = __KEY_THEME_COLOR_SCHEME__ } = props
+	const { followOS, colorSchemeKey = __KEY_THEME_COLOR_SCHEME__, onColorScheme } = props
 
 
 	const matchDarkMedia = matchMedia('(prefers-color-scheme: dark)')
 
 	// 获取初始主题模式
-	const themeMode = useCallback(() => matchDarkMedia.matches ? 'dark' : 'light', [matchDarkMedia])
+	const browserColorScheme = useCallback(() => matchDarkMedia.matches ? 'dark' : 'light', [matchDarkMedia])
 
-	const [darkMode, setDarkMode] = useState<_TYPE_DARK_MODE>(themeMode())
+	const [darkMode, setDarkMode] = useState<_TYPE_DARK_MODE>(browserColorScheme())
 
 
 
 	// 更新通知 监听
 	const putDarkMode = useCallback((value: _TYPE_DARK_MODE) => {
-		setDarkMode(value)
+		document.documentElement.dataset[colorSchemeKey] = value
 		onColorScheme && onColorScheme(value)
-	}, [onColorScheme])
+		setDarkMode(value)
+	}, [colorSchemeKey, onColorScheme])
 
 	const toDarkMode = (value: _TYPE_DARK_MODE) => {
-		const { dataset } = document.documentElement
-		dataset[colorSchemeKey] = value
 		putDarkMode(value)
 	}
-	const toggleDarkMode = () => toDarkMode(darkMode === 'dark' ? 'light' : 'dark')
+	const toggleDarkMode = () => {
+		toDarkMode(darkMode === 'dark' ? 'light' : 'dark')
+	}
+
 
 	useEffect(() => {
 
-
 		// 设置系统主题变更listen
 		const onFollowOS = () => {
-			const value = themeMode()
-			const { dataset } = document.documentElement
-			dataset[colorSchemeKey] = value	//同步到dataset中 触发css更新
+			const value = browserColorScheme()
+			document.documentElement.dataset[colorSchemeKey] = value	//同步到dataset中 触发css更新
 			putDarkMode(value)
 		}
 
 		if (followOS) {
-			const { dataset } = document.documentElement
-
-			matchDarkMedia.addEventListener('change', onFollowOS)
-
 			//判断是否跟随系统设置
-			dataset[colorSchemeKey] = themeMode() //同步到dataset中 触发css更新
-
+			document.documentElement.dataset[colorSchemeKey] = browserColorScheme() //同步到dataset中 触发css更新
+			matchDarkMedia.addEventListener('change', onFollowOS)
 		} else {
 			matchDarkMedia.removeEventListener('change', onFollowOS)
 		}
 		return () => matchDarkMedia.removeEventListener('change', onFollowOS)
 
-	}, [colorSchemeKey, followOS, matchDarkMedia, putDarkMode, themeMode])
+	}, [followOS, matchDarkMedia, putDarkMode, browserColorScheme, colorSchemeKey])
 
 
 
