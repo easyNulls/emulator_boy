@@ -2,10 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { InjectGame, NotFound, HotGameList } from '@pages'
 
-import { Provider } from 'react-redux'
 import { config } from '@config'
 import { getStrings } from '@assets'
-import { store } from '@/store'
 
 import './App.less'
 
@@ -44,7 +42,6 @@ export const App: React.FC<Record<string, any>> = (props: Record<string, any>) =
   return (
     <IntlProvider messages={strings} locale={local}>
       <ThemeColorSchemeProvider ref={colorSchemeRef} onColorScheme={putTheme} followOS={followOS}>
-        <Provider store={store}>
           <ColorSchemeSwitcher colorScheme={theme} onToggle={() => colorSchemeRef.current?.toggleDarkMode()} />
           <Router>
             <Routes>
@@ -53,7 +50,6 @@ export const App: React.FC<Record<string, any>> = (props: Record<string, any>) =
               <Route path='*' element={<NotFound />} />
             </Routes>
           </Router>
-        </Provider>
       </ThemeColorSchemeProvider>
     </IntlProvider>
   )
